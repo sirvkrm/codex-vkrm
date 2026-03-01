@@ -1,15 +1,19 @@
 # Codex CLI for Termux
 
-> Built from upstream OpenAI Codex `rust-v0.106.0`, packaged for Android Termux.
+> A Termux-first fork of OpenAI Codex `rust-v0.106.0` with architecture-specific Android native packages for every common Termux CPU architecture.
 
-This npm package ships the native Codex Rust binaries for Termux on Android and supports:
+This npm package is the lightweight wrapper package. It installs and launches the matching native Codex Rust package for Termux on Android and supports:
 
 - `arm64`
 - `armv7`
+- `x86_64`
+- `x86`
 
 It is intended for Termux only, not desktop Linux distributions.
 
 Source repository: https://github.com/sirvkrm/codex-vkrm
+
+This package is a community-maintained fork of [OpenAI Codex](https://github.com/openai/codex) and is inspired by [DioNanos](https://github.com/DioNanos).
 
 ## Install
 
@@ -32,7 +36,7 @@ codex login
 - `codex`
 - `codex-exec`
 
-The launcher auto-selects the correct bundled binary for your device architecture and sets `LD_LIBRARY_PATH` so the packaged `libc++_shared.so` is found automatically.
+The launcher auto-selects the correct native dependency for your device architecture and sets `LD_LIBRARY_PATH` so the packaged `libc++_shared.so` is found automatically.
 
 ## Maintainer Notes
 
@@ -44,7 +48,7 @@ npm pack --dry-run
 npm publish --access public
 ```
 
-Before publishing, make sure the staged binaries under `bin/android-arm64/` and `bin/android-armv7/` are up to date.
+Before publishing, make sure the matching architecture packages are published first, then publish this wrapper package last so its optional dependency versions resolve.
 
 ## License
 
