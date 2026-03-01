@@ -1,6 +1,6 @@
 # Codex CLI for Termux
 
-> Built from upstream OpenAI Codex and packaged for Android Termux.
+> A Termux-first fork of OpenAI Codex with architecture-specific native packages for every common Termux CPU architecture.
 
 [![npm termux](https://img.shields.io/npm/v/@sirvkrm/codex-cli-termux?style=flat-square&logo=npm)](https://www.npmjs.org/package/@sirvkrm/codex-cli-termux)
 
@@ -8,16 +8,21 @@
 
 ## About
 
-This repository packages the upstream OpenAI Codex Rust CLI for Android Termux.
+This repository is a fork of [OpenAI Codex](https://github.com/openai/codex) packaged specifically for Android Termux.
 
 GitHub: https://github.com/sirvkrm/codex-vkrm
 
-It is a Termux-focused wrapper:
+It is designed for Termux, not desktop Linux distributions, and currently ships:
 
 - Android only
-- `arm64` and `armv7` supported
+- `arm64`
+- `armv7`
+- `x86_64`
+- `x86`
 - minimal compatibility patches only
 - no deliberate behavior changes beyond making it run on Termux
+
+This packaging work is community-maintained and is inspired by [DioNanos](https://github.com/DioNanos), whose earlier Termux-focused distribution helped prove out the approach.
 
 ## Install
 
@@ -28,6 +33,8 @@ pkg install nodejs-lts -y
 npm install -g @sirvkrm/codex-cli-termux
 ```
 
+The top-level package installs the matching Android native package for your device automatically.
+
 ## Verify
 
 ```bash
@@ -37,8 +44,8 @@ codex login
 
 ## Package Behavior
 
-- The npm wrapper auto-detects `arm64` vs `armv7` on Android.
-- It selects the matching bundled native binary at runtime.
+- The npm wrapper auto-detects the correct ABI on Android.
+- It selects the matching architecture-specific native package at runtime.
 - It sets `LD_LIBRARY_PATH` so the packaged `libc++_shared.so` is found automatically.
 
 ## Build From Source
@@ -56,11 +63,12 @@ The Rust workspace lives in [codex-rs](/root/codex-termux/codex-rs) and the npm 
 
 ## Maintenance
 
-This is a community-maintained Termux packaging repo for upstream Codex. The goal is to keep the package usable on Termux while staying close to upstream.
+This is a community-maintained Termux packaging fork. The goal is to keep upstream Codex usable across the full set of common Termux Android architectures while staying as close to upstream as practical.
 
 ## License
 
 Apache-2.0.
 
 Original project: OpenAI Codex  
+Inspiration: [DioNanos](https://github.com/DioNanos)  
 Termux packaging: community-maintained
