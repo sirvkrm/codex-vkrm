@@ -1,0 +1,109 @@
+# Testing
+
+## Test Reports
+
+Termux-focused validation for the packaged Android build, plus archived
+comparison baselines.
+
+### Latest (Termux)
+
+- **v0.106.0-termux**: [test-reports/latest/0.106.0-termux/CODEX_TEST_REPORT_v0.106.0-termux.md](../test-reports/latest/0.106.0-termux/CODEX_TEST_REPORT_v0.106.0-termux.md)
+- **Extended**: [test-reports/latest/0.106.0-termux/CODEX_TEST_REPORT_v0.106.0-termux_extended.md](../test-reports/latest/0.106.0-termux/CODEX_TEST_REPORT_v0.106.0-termux_extended.md)
+- **Runner log**: [test-reports/latest/0.106.0-termux/TERMUX_EXTENDED_RUNNER_REPORT_20260301-021650.md](../test-reports/latest/0.106.0-termux/TERMUX_EXTENDED_RUNNER_REPORT_20260301-021650.md)
+- **Suite**: [test-reports/suites/latest/termux.md](../test-reports/suites/latest/termux.md)
+
+Older Termux reports remain in `test-reports/latest/` as archived references.
+
+### Archived Baselines (LTS)
+
+These are kept for regression comparison and may describe non-Termux hosts.
+
+#### Linux
+- **v0.80.4-lts**: [test-reports/lts/0.80.4-lts/CODEX_TEST_REPORT_v0.80.4-lts_linux.md](../test-reports/lts/0.80.4-lts/CODEX_TEST_REPORT_v0.80.4-lts_linux.md)
+- **Suite**: [test-reports/suites/lts/linux.md](../test-reports/suites/lts/linux.md)
+
+#### Termux
+- **v0.80.4-lts**: [test-reports/lts/0.80.4-lts/CODEX_TEST_REPORT_v0.80.4-lts_termux.md](../test-reports/lts/0.80.4-lts/CODEX_TEST_REPORT_v0.80.4-lts_termux.md)
+- **Suite**: [test-reports/suites/lts/termux.md](../test-reports/suites/lts/termux.md)
+
+#### macOS
+- **v0.80.4-lts**: [test-reports/lts/0.80.4-lts/CODEX_TEST_REPORT_v0.80.4-lts_mac.md](../test-reports/lts/0.80.4-lts/CODEX_TEST_REPORT_v0.80.4-lts_mac.md)
+- **Suite**: [test-reports/suites/lts/macos.md](../test-reports/suites/lts/macos.md)
+
+---
+
+## Test Suite Overview
+
+### Categories
+
+1. System Information (3 tests)
+2. File Operations (8 tests)
+3. Search & Discovery (3 tests)
+4. Shell Execution (4 tests)
+5. Text Processing (2 tests)
+6. Web & Network (2 tests - optional)
+7. Git Operations (2 tests - optional)
+8. AI Capabilities (3 tests)
+9. Error Handling (3 tests)
+10. **Termux-Specific (10 tests)** ⭐ - Validates all Android patches
+11. Cleanup (1 test)
+12. **Package & Binary (8 tests)** ⭐ - Validates npm installation and binaries
+
+### How to Run Tests
+
+```bash
+# Start Codex
+codex
+
+# Feed the test suite
+> Read and execute all tests in https://github.com/sirvkrm/codex-vkrm/blob/main/test-reports/suites/latest/termux.md
+```
+
+Codex will automatically:
+1. Execute all applicable tests sequentially
+2. Report PASS/FAIL for each test
+3. Generate a final summary with total passed/failed counts
+
+### Success Criteria
+
+- All System, Files, Shell, and Termux tests must pass
+- At least 80% overall pass rate
+- No critical crashes
+
+---
+
+## Platform-Specific Notes
+
+### Termux
+
+Tests validate:
+- Environment paths (`$PREFIX`, `$HOME`, `$LD_LIBRARY_PATH`)
+- Shell detection (bash/zsh on Android)
+- Package manager (`pkg` commands)
+- Storage access (`/sdcard`, `~/storage`)
+- Android permissions and sandbox isolation
+- Library path preservation
+- Browser opener availability
+- Architecture detection and ABI payload selection (`arm64` / `armv7`)
+
+### Linux
+
+Tests validate:
+- Standard Linux filesystem structure
+- npm installation and binary verification
+- Shell execution in typical Linux environment
+- Network access and package management
+
+### macOS
+
+Tests validate:
+- macOS-specific filesystem paths
+- Homebrew integration
+- ARM64 compatibility
+- Standard Unix tools availability
+
+---
+
+## All Test Reports
+
+See [test-reports/](../test-reports/) for the full archive of reports and suites.

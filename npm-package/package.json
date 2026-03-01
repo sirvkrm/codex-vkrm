@@ -1,0 +1,49 @@
+{
+  "name": "@sirvkrm/codex-cli-termux",
+  "version": "0.106.0-termux.2",
+  "description": "OpenAI Codex CLI (upstream rust-v0.106.0) packaged for Android Termux (arm64 + armv7). Use 'codex' for the TUI and 'codex exec --json' for automation.",
+  "type": "module",
+  "main": "bin/codex.js",
+  "bin": {
+    "codex": "bin/codex.js",
+    "codex-exec": "bin/codex-exec.js"
+  },
+  "files": [
+    "bin/codex.js",
+    "bin/codex-exec.js",
+    "bin/android-arm64/",
+    "bin/android-armv7/",
+    "README.md"
+  ],
+  "keywords": [
+    "codex",
+    "openai",
+    "termux",
+    "android",
+    "arm64",
+    "arm",
+    "cli",
+    "ai",
+    "coding-agent"
+  ],
+  "author": "DioNanos",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirvkrm/codex-vkrm.git"
+  },
+  "homepage": "https://github.com/sirvkrm/codex-vkrm#readme",
+  "bugs": {
+    "url": "https://github.com/sirvkrm/codex-vkrm/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "android"
+  ],
+  "cpu": [
+    "arm64",
+    "arm"
+  ]
+}
