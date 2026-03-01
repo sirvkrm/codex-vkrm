@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 import { spawn } from 'child_process';
+import { createRequire } from 'module';
 import { existsSync, lstatSync } from 'fs';
-import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
 
-function resolveAbiDir() {
+function resolvePlatformPackage() {
   if (process.platform !== 'android') {
     console.error('This package is for Termux on Android only.');
     process.exit(1);
@@ -16,12 +15,28 @@ function resolveAbiDir() {
 
   switch (process.arch) {
     case 'arm64':
-      return join(__dirname, 'android-arm64');
+      return '@sirvkrm/codex-cli-termux-android-arm64';
     case 'arm':
-      return join(__dirname, 'android-armv7');
+      return '@sirvkrm/codex-cli-termux-android-armv7';
+    case 'x64':
+      return '@sirvkrm/codex-cli-termux-android-x86-64';
+    case 'ia32':
+      return '@sirvkrm/codex-cli-termux-android-x86';
     default:
       console.error(`Unsupported Android architecture: ${process.arch}`);
       process.exit(1);
+  }
+}
+
+function resolveAbiDir() {
+  const platformPackage = resolvePlatformPackage();
+
+  try {
+    const manifestPath = require.resolve(`${platformPackage}/package.json`);
+    return join(dirname(manifestPath), 'bin');
+  } catch {
+    console.error(`Missing native package for ${process.arch}. Reinstall without --no-optional and make sure optional dependencies are enabled.`);
+    process.exit(1);
   }
 }
 
