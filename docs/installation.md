@@ -8,6 +8,8 @@ Supported CPU architectures:
 
 - `arm64`
 - `armv7`
+- `x86_64`
+- `x86`
 
 ## Install
 
@@ -50,10 +52,11 @@ command -v codex-exec
 
 ## Notes
 
-- The npm wrapper auto-selects the correct bundled native binary for `arm64` or `armv7`.
+- The npm wrapper auto-selects the correct architecture-specific native package for `arm64`, `armv7`, `x86_64`, or `x86`.
 - `libc++_shared.so` is bundled and loaded automatically by the launcher.
 
 ## Links
 
 - npm: https://www.npmjs.org/package/@sirvkrm/codex-cli-termux
 - Upstream: https://github.com/openai/codex
+- Fork: https://github.com/sirvkrm/codex-vkrm
