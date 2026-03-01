@@ -1,6 +1,6 @@
-# 🔨 Building Codex CLI (Termux fork)
+# Building Codex CLI (Termux fork)
 
-This repository packages the official OpenAI Codex CLI for Android Termux (ARM64) with a small set of compatibility patches. Most users should install the precompiled npm package:
+This repository packages a Termux-focused fork of the OpenAI Codex CLI for Android. The published npm setup uses a lightweight wrapper package plus architecture-specific native packages for `arm64`, `armv7`, `x86_64`, and `x86`, and most users should install the wrapper directly:
 
 ```bash
 npm install -g @sirvkrm/codex-cli-termux
@@ -12,7 +12,7 @@ If you want or need to build the binary yourself, follow the steps below.
 
 ## 1. Prerequisites (Termux)
 
-On a Termux environment with ARM64:
+On a Termux environment:
 
 ```bash
 pkg update && pkg upgrade -y
@@ -72,7 +72,7 @@ You can run it directly:
 
 ## 4. Use the binary with the npm wrapper (optional)
 
-If you want to test the same layout used by the published npm package:
+If you want to test the same layout used by a single native package on the device you built on:
 
 ```bash
 cd ../npm-package
@@ -101,9 +101,10 @@ For maintainers who publish `@sirvkrm/codex-cli-termux`:
 2. **Update versions**:
    - `codex-rs/Cargo.toml` → `[workspace.package] version`
    - `npm-package/package.json` → `"version": "<same>-termux"`
-3. **Build the Termux binary** as in section 3.
-4. **Copy the binary into the npm wrapper** as in section 4.
-5. **Publish** from `npm-package/` (for authorized maintainers only):
+3. **Build the Termux binaries** for the Android architectures you publish (`arm64`, `armv7`, `x86_64`, and `x86`).
+4. **Publish the four native architecture packages first** (`android-arm64`, `android-armv7`, `android-x86_64`, and `android-x86`).
+5. **Publish the wrapper package last** so its `optionalDependencies` point at packages that already exist.
+6. **Publish** from `npm-package/` (for authorized maintainers only):
 
    ```bash
    npm publish --access public
