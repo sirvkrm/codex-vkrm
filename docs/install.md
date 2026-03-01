@@ -5,7 +5,7 @@
 | Requirement                 | Details                                                         |
 | --------------------------- | --------------------------------------------------------------- |
 | Installation target         | Android Termux                                                  |
-| Supported CPU architectures | `arm64`, `armv7`                                                |
+| Supported CPU architectures | `arm64`, `armv7`, `x86_64`, `x86`                               |
 | Node.js                     | `nodejs-lts` from Termux                                        |
 | Git (optional, recommended) | 2.23+ for source builds and PR helpers                          |
 | RAM                         | 4-GB minimum (8-GB recommended)                                 |
@@ -19,8 +19,8 @@ pkg install nodejs-lts -y
 npm install -g @sirvkrm/codex-cli-termux
 ```
 
-The npm wrapper is Android-only and selects the correct bundled native binary
-for `arm64` or `armv7` automatically.
+The npm wrapper is Android-only and selects the correct native package
+for `arm64`, `armv7`, `x86_64`, or `x86` automatically.
 
 ### DotSlash
 
@@ -29,9 +29,9 @@ The GitHub Release also contains a [DotSlash](https://dotslash-cli.com/) file fo
 ### Build from source
 
 ```bash
-# Clone the repository and navigate to the root of the Cargo workspace.
-git clone https://github.com/openai/codex.git
-cd codex/codex-rs
+# Clone this fork and navigate to the root of the Cargo workspace.
+git clone https://github.com/sirvkrm/codex-vkrm.git
+cd codex-vkrm/codex-rs
 
 # Install the Rust toolchain, if necessary.
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
